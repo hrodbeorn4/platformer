@@ -12,12 +12,17 @@ namespace YOUR_NAME
         
         public event Action onJump;
         public event Action onInteract;
+        public event Action onPosition;
+        public event Action onAttack;
         
         private void Awake()
         {
             _controls = new Controls();
             _controls.Player.Jump.performed += _ => onJump?.Invoke();
             _controls.Player.Interact.performed += _ => onInteract?.Invoke();
+            _controls.Player.Interact.performed += _ => onPosition?.Invoke();
+            _controls.Player.Interact.performed += _ => onAttack?.Invoke();
+
         }
 
         private void OnEnable()
